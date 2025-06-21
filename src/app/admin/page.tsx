@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import { Eye, EyeOff, Cpu, Shield, Binary } from 'lucide-react';
 
 export default function AdminLogin() {
@@ -21,7 +22,7 @@ export default function AdminLogin() {
         if (response.ok) {
           router.push('/admin/dashboard');
         }
-      } catch (error) {
+      } catch {
         // Not authenticated, stay on login page
       }
     };
@@ -51,8 +52,8 @@ export default function AdminLogin() {
       // Redirect to dashboard
       router.push('/admin/dashboard');
 
-    } catch (error: any) {
-      setError(error.message);
+    } catch (error: unknown) {
+      setError(error instanceof Error ? error.message : 'Authentication failed');
     } finally {
       setIsLoading(false);
     }
@@ -202,12 +203,12 @@ export default function AdminLogin() {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.6 }}
           >
-            <a
+            <Link
               href="/"
               className="text-neon-purple hover:text-neon-cyan transition-colors font-mono text-sm"
             >
               ← Return to neural network
-            </a>
+            </Link>
           </motion.div>
         </motion.div>
       </div>

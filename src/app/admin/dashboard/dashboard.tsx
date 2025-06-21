@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useRouter } from 'next/navigation';
 import { 
@@ -8,14 +8,9 @@ import {
   Users, 
   TrendingUp, 
   Activity, 
-  Database, 
   Download, 
   RefreshCw, 
   LogOut,
-  Mail,
-  Calendar,
-  Clock,
-  Globe,
   Zap,
   Shield,
   Settings,
@@ -39,13 +34,17 @@ import {
 } from 'lucide-react';
 import { format } from 'date-fns';
 
-interface DashboardStats {
-  total: number;
-  today: number;
-  thisWeek: number;
-  growthRate: number;
-  conversionRate: number;
-  avgDaily: number;
+// Interface for dashboard statistics
+interface StatsData {
+  stats: {
+    total: number;
+    today: number;
+    thisWeek: number;
+    growthRate: number;
+    conversionRate: number;
+    avgDaily: number;
+  };
+  chartData?: ChartDataType;
 }
 
 interface WaitlistEntry {
@@ -59,13 +58,14 @@ interface WaitlistEntry {
   user_agent?: string;
 }
 
-interface ChartData {
+// Interface for chart data structure
+interface ChartDataType {
   daily: Array<{ date: string; signups: number }>;
   hourly: Array<{ hour: number; signups: number }>;
 }
 
 export default function Dashboard() {
-  const [stats, setStats] = useState<any>(null);
+  const [stats, setStats] = useState<StatsData | null>(null);
   const [allEntries, setAllEntries] = useState<WaitlistEntry[]>([]);
   const [filteredEntries, setFilteredEntries] = useState<WaitlistEntry[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -76,7 +76,7 @@ export default function Dashboard() {
   const [showModal, setShowModal] = useState(false);
   const router = useRouter();
 
-  const fetchData = async () => {
+  const fetchData = useCallback(async () => {
     try {
       console.log('Fetching admin stats...');
       const [statsResponse, entriesResponse] = await Promise.all([
@@ -105,11 +105,11 @@ export default function Dashboard() {
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [router]);
 
   useEffect(() => {
     fetchData();
-  }, [router]);
+  }, [fetchData]);
 
   // Filter entries based on search and status
   useEffect(() => {
@@ -370,7 +370,7 @@ export default function Dashboard() {
                     <PieChart className="w-5 h-5 neon-cyan" />
                   </div>
                   <div className="space-y-3">
-                    {stats?.chartData?.daily?.map((day: any, index: number) => (
+                    {stats?.chartData?.daily?.map((day: { date: string; signups: number }, index: number) => (
                       <div key={day.date} className="flex items-center gap-4">
                         <div className="text-xs font-mono text-gray-400 w-20">
                           {format(new Date(day.date), 'MMM dd')}

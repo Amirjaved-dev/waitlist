@@ -43,12 +43,12 @@ export async function GET() {
       }
     });
 
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Test DB error:', error);
     return NextResponse.json({
       success: false,
-      error: error.message,
-      stack: error.stack
+      error: error instanceof Error ? error.message : 'Database test failed',
+      stack: error instanceof Error ? error.stack : undefined
     }, { status: 500 });
   }
 } 

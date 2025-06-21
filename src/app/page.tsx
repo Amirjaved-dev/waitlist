@@ -136,10 +136,10 @@ const WaitlistForm = ({ size = 'default' }: { size?: 'default' | 'large' }) => {
       setName('');
       setTimeout(() => setIsSubmitted(false), 4000);
 
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Waitlist signup error:', error);
       setIsLoading(false);
-      alert(error.message || 'Failed to join waitlist. Please try again.');
+      alert(error instanceof Error ? error.message : 'Failed to join waitlist. Please try again.');
     }
   };
 
@@ -155,7 +155,7 @@ const WaitlistForm = ({ size = 'default' }: { size?: 'default' | 'large' }) => {
         </div>
         <h3 className="text-2xl font-bold text-white mb-2">Welcome to the Revolution! 🚀</h3>
         <p className="text-gray-300 mb-4">
-          You're now on the waitlist! We'll notify you as soon as SellMyMind launches.
+          You&apos;re now on the waitlist! We&apos;ll notify you as soon as SellMyMind launches.
         </p>
         <p className="text-sm text-gray-400">
           Get ready to turn your mind into money.
@@ -303,7 +303,7 @@ export default function Home() {
             
             <div className="hidden md:flex items-center space-x-8">
               <a href="#how-it-works" className="text-gray-300 hover:text-purple-400 transition-colors">How It Works</a>
-              <a href="#who-its-for" className="text-gray-300 hover:text-purple-400 transition-colors">Who It's For</a>
+              <a href="#who-its-for" className="text-gray-300 hover:text-purple-400 transition-colors">Who It&apos;s For</a>
               <a href="#earn" className="text-gray-300 hover:text-purple-400 transition-colors">Earn Money</a>
             </div>
 
@@ -427,7 +427,7 @@ export default function Home() {
           <AnimatedSection className="text-center mb-16">
             <h2 className="text-4xl sm:text-5xl font-bold mb-6">
               <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-                Who It's For
+                Who It&apos;s For
               </span>
             </h2>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto">
@@ -479,7 +479,7 @@ export default function Home() {
               </div>
               <h3 className="text-3xl font-bold text-white mb-4">CryptoAirdropPro</h3>
               <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-                "An expert AI that tells you how to hunt the best crypto airdrops and maximize your earnings in the DeFi space."
+                &ldquo;An expert AI that tells you how to hunt the best crypto airdrops and maximize your earnings in the DeFi space.&rdquo;
               </p>
               <div className="flex items-center justify-center space-x-6 mb-8">
                 <div className="text-center">
@@ -518,7 +518,7 @@ export default function Home() {
                 </span>
               </h2>
               <p className="text-xl text-gray-300 mb-8">
-                You earn every time someone chats with your AI. It's that simple.
+                You earn every time someone chats with your AI. It&apos;s that simple.
               </p>
               
               <div className="space-y-6">

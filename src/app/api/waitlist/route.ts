@@ -50,11 +50,12 @@ export async function POST(request: NextRequest) {
       }
     });
 
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Waitlist signup error:', error);
     
     // Handle duplicate email
-    if (error.message?.includes('duplicate') || error.code === '23505') {
+    if ((error instanceof Error && error.message?.includes('duplicate')) || 
+        (typeof error === 'object' && error !== null && 'code' in error && error.code === '23505')) {
       return NextResponse.json(
         { error: 'This consciousness is already in our neural network' },
         { status: 409 }
