@@ -295,8 +295,8 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center space-x-2">
-              <div className="w-8 h-8 bg-gradient-to-r from-purple-600 to-blue-600 rounded-lg flex items-center justify-center">
-                <SparklesIcon className="h-5 w-5 text-white" />
+              <div className="w-8 h-8 flex items-center justify-center">
+                <img src="/favicon.svg" alt="SellMyMind Logo" className="h-8 w-8" />
               </div>
               <span className="text-xl font-bold bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">SellMyMind</span>
             </div>
@@ -337,7 +337,7 @@ export default function Home() {
                 transition={{ duration: 0.6, delay: 0.2 }}
                 className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-purple-600/20 to-blue-600/20 border border-purple-500/30 rounded-full text-purple-300 text-sm font-medium backdrop-blur-sm"
               >
-                <SparklesIcon className="h-4 w-4 mr-2" />
+                <img src="/favicon.svg" alt="SellMyMind" className="h-4 w-4 mr-2" />
                 Turn Your Mind Into Money
               </motion.div>
               
