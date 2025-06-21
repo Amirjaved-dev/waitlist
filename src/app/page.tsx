@@ -3,13 +3,9 @@
 import React, { useState, useEffect } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
+import Image from 'next/image';
 
 // Icon Components
-const SparklesIcon = ({ className }: { className?: string }) => (
-  <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3l1.5 1.5L10 3m0 0l3.5 3.5L15 5M10 3v18m0 0l-3.5-3.5L5 19m5 2l3.5-3.5L15 19" />
-  </svg>
-);
 
 const BrainIcon = ({ className }: { className?: string }) => (
   <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -296,7 +292,7 @@ export default function Home() {
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center space-x-2">
               <div className="w-8 h-8 flex items-center justify-center">
-                <img src="/favicon.svg" alt="SellMyMind Logo" className="h-8 w-8" />
+                <Image src="/favicon.svg" alt="SellMyMind Logo" width={32} height={32} />
               </div>
               <span className="text-xl font-bold bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">SellMyMind</span>
             </div>
@@ -337,7 +333,7 @@ export default function Home() {
                 transition={{ duration: 0.6, delay: 0.2 }}
                 className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-purple-600/20 to-blue-600/20 border border-purple-500/30 rounded-full text-purple-300 text-sm font-medium backdrop-blur-sm"
               >
-                <img src="/favicon.svg" alt="SellMyMind" className="h-4 w-4 mr-2" />
+                <Image src="/favicon.svg" alt="SellMyMind" width={16} height={16} className="mr-2" />
                 Turn Your Mind Into Money
               </motion.div>
               
@@ -601,7 +597,7 @@ export default function Home() {
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="flex items-center space-x-2 mb-4 md:mb-0">
               <div className="w-8 h-8 flex items-center justify-center">
-                <img src="/favicon.svg" alt="SellMyMind Logo" className="h-8 w-8" />
+                <Image src="/favicon.svg" alt="SellMyMind Logo" width={32} height={32} />
               </div>
               <span className="text-xl font-bold bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">SellMyMind</span>
             </div>
